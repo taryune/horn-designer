@@ -11,12 +11,19 @@
   },
   "formatter": {
     "enabled": true,
-    "formatWithErrors": false,
+    "formatWithErrors": true,
     "indentStyle": "space",
     "indentWidth": 2,
     "lineEnding": "lf",
     "lineWidth": 100,
     "attributePosition": "auto"
+  },
+  "css": {
+    "parser": {
+      "cssModules": true,
+      "tailwindDirectives": true,
+      "allowWrongLineComments": true
+    }
   },
   "linter": {
     "enabled": true,
