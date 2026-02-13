@@ -5,6 +5,7 @@
  * Left sidebar containing all parameter controls and export buttons.
  */
 
+import { colors } from '../../lib/design-tokens'
 import { ExportButtons } from '../controls/ExportButtons'
 import { HorizontalGuideSection } from '../controls/HorizontalGuideSection'
 import { InfoBadges } from '../controls/InfoBadges'
@@ -19,18 +20,18 @@ export function ControlPanel() {
     <div
       className="w-[264px] min-w-[264px] h-full overflow-y-auto border-r scrollbar-thin"
       style={{
-        background: '#13110d',
-        borderColor: '#242018',
+        background: colors.panelBg,
+        borderColor: colors.panelBorder,
         padding: '10px 11px',
       }}
     >
       <div
-        className="mb-[1px] text-[15px] font-black tracking-[1.5px]"
-        style={{ color: '#c8a84e' }}
+        className="mb-[1px] text-base font-black tracking-[1.5px]"
+        style={{ color: colors.primary }}
       >
-        R-OSSE
+        Horn Designer
       </div>
-      <div className="mb-[10px] text-[8px] tracking-[1px]" style={{ color: '#4a4430' }}>
+      <div className="mb-[10px] text-xs tracking-[1px]" style={{ color: colors.textSubtle }}>
         X-SHAPE MODULATED WAVEGUIDE
       </div>
 
@@ -47,7 +48,7 @@ export function ControlPanel() {
 
       <ExportButtons />
 
-      <div className="text-[7px] leading-[1.6] px-[2px]" style={{ color: '#302c20' }}>
+      <div className="text-footer leading-[1.6] px-[2px]" style={{ color: colors.textSubtleDark }}>
         R-OSSE by Marcel Batík (at-horns.eu). X-shape polar modulation for diagonal coverage
         reinforcement.
       </div>

@@ -1,4 +1,5 @@
 import { useWaveguide } from '../../context/WaveguideContext'
+import { colors } from '../../lib/design-tokens'
 import { ParameterSlider } from './ParameterSlider'
 
 export function XModulationSection() {
@@ -9,34 +10,34 @@ export function XModulationSection() {
     <div
       className="rounded-[5px] mb-[7px] transition-all duration-300"
       style={{
-        background: '#1c1a14',
+        background: colors.card,
         border: '1px solid',
-        borderColor: x.enabled ? '#44286a' : '#282420',
+        borderColor: x.enabled ? colors.xModBorder : colors.panelBorderLight,
         padding: '9px 11px',
       }}
     >
       <div className="flex justify-between items-center mb-[6px]">
         <div
-          className="text-[9.5px] font-extrabold uppercase tracking-[1.8px]"
-          style={{ color: '#a06cf0' }}
+          className="text-micro font-extrabold uppercase tracking-[1.8px]"
+          style={{ color: colors.xMod }}
         >
           X-Shape Modulation
         </div>
         <button
           onClick={() => dispatch({ type: 'UPDATE_XMOD_ENABLED', value: !x.enabled })}
-          className="rounded-[3px] text-[9px] font-bold cursor-pointer"
+          className="rounded-[3px] text-micro font-bold cursor-pointer"
           style={{
-            background: x.enabled ? '#a06cf030' : '#1a1810',
-            border: `1px solid ${x.enabled ? '#a06cf0' : '#302c22'}`,
+            background: x.enabled ? colors.xMod30 : colors.secondary,
+            border: `1px solid ${x.enabled ? colors.xMod : colors.border}`,
             padding: '2px 8px',
-            color: x.enabled ? '#a06cf0' : '#504838',
+            color: x.enabled ? colors.xMod : colors.textDisabled,
             fontFamily: 'inherit',
           }}
         >
           {x.enabled ? 'ON' : 'OFF'}
         </button>
       </div>
-      <div className="text-[9px] mb-[8px] italic" style={{ color: '#706858' }}>
+      <div className="text-micro mb-[8px] italic" style={{ color: colors.mutedForeground }}>
         r(θ) = base + amp·|sin(freq·θ)|^exp
       </div>
       {x.enabled && (
@@ -79,7 +80,10 @@ export function XModulationSection() {
             decimals={0}
             color="x-mod"
           />
-          <div className="mt-[4px] pt-[6px]" style={{ borderTop: '1px solid #282420' }}>
+          <div
+            className="mt-[4px] pt-[6px]"
+            style={{ borderTop: `1px solid ${colors.panelBorderLight}` }}
+          >
             <ParameterSlider
               label="blend start (t)"
               value={x.blendStart}

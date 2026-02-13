@@ -5,10 +5,16 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Border radius scale */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Color tokens */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -41,61 +47,14 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-}
 
-:root {
-  /* Original R-OSSE color scheme */
-  --background: #111010;
-  --foreground: #d0c8a8;
-  --card: #1c1a14;
-  --card-foreground: #d0c8a8;
-  --popover: #1c1a14;
-  --popover-foreground: #d0c8a8;
-  --primary: #c8a84e;
-  --primary-foreground: #13110d;
-  --secondary: #1a1810;
-  --secondary-foreground: #e0d4a8;
-  --muted: #1a1810;
-  --muted-foreground: #a09880;
-  --accent: #1a1810;
-  --accent-foreground: #d0c8a8;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: #d0c8a8;
-  --border: #302c22;
-  --input: #1c1a14;
-  --ring: #c8a84e;
-  --radius: 5px;
-
-  /* Panel colors */
-  --panel-bg: #13110d;
-  --panel-border: #242018;
-
-  /* Custom waveguide colors */
-  --h-guide: #e8943a;
-  --v-guide: #4a9de8;
-  --super-ellipse: #b898d0;
-  --x-mod: #a06cf0;
-
-  /* Border accents */
-  --h-guide-border: #3a2c14;
-  --v-guide-border: #1a2c44;
-  --super-ellipse-border: #382848;
-  --x-mod-border: #44286a;
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  html,
-  body,
-  #root {
-    @apply w-full h-full overflow-hidden m-0 p-0;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-family: "JetBrains Mono", "Fira Code", monospace;
-  }
+  /* Typography scale */
+  --font-size-footer: 0.4375rem; /* 7px */
+  --font-size-tiny: 0.5rem; /* 8px */
+  --font-size-micro: 0.5625rem; /* 9px */
+  --font-size-xxs: 0.625rem; /* 10px */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 0.9375rem; /* 15px */
+  --font-size-lg: 1rem; /* 16px */
 }

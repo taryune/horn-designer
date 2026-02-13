@@ -1,0 +1,77 @@
+:root {
+  /* Base radius */
+  --radius: 5px;
+
+  /* R-OSSE color scheme - Base colors */
+  --background: #111010;
+  --foreground: #d0c8a8;
+  --card: #1c1a14;
+  --card-foreground: #d0c8a8;
+  --popover: #1c1a14;
+  --popover-foreground: #d0c8a8;
+  --primary: #c8a84e;
+  --primary-foreground: #13110d;
+  --secondary: #1a1810;
+  --secondary-foreground: #e0d4a8;
+  --muted: #1a1810;
+  --muted-foreground: #a09880;
+  --accent: #1a1810;
+  --accent-foreground: #d0c8a8;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: #d0c8a8;
+  --border: #302c22;
+  --input: #1c1a14;
+  --ring: #c8a84e;
+
+  /* Panel colors */
+  --panel-bg: #13110d;
+  --panel-border: #242018;
+  --panel-border-light: #282420;
+  --panel-border-medium: #3a3420;
+  --panel-header-bg: #201c14;
+
+  /* Canvas colors */
+  --canvas-bg: #0a0a0a;
+  --canvas-text: #605840;
+  --canvas-grid: #1a1816;
+
+  /* Custom waveguide colors - Primary */
+  --h-guide: #e8943a;
+  --v-guide: #4a9de8;
+  --super-ellipse: #b898d0;
+  --x-mod: #a06cf0;
+
+  /* Waveguide colors - Border accents */
+  --h-guide-border: #3a2c14;
+  --v-guide-border: #1a2c44;
+  --super-ellipse-border: #382848;
+  --x-mod-border: #44286a;
+
+  /* Waveguide colors - Opacity variants (for overlays and canvas) */
+  --h-guide-30: #e8943a30;
+  --h-guide-70: #e8943a70;
+  --h-guide-90: #e8943a90;
+  --v-guide-30: #4a9de830;
+  --v-guide-70: #4a9de870;
+  --v-guide-90: #4a9de890;
+  --x-mod-30: #a06cf030;
+  --x-mod-70: #a06cf070;
+
+  /* Primary color with opacity */
+  --primary-08: #c8a84e14; /* ~8% opacity */
+
+  /* Text color variations */
+  --text-subtle: #4a4430;
+  --text-subtle-dark: #302c20;
+  --text-disabled: #504838;
+
+  /* Typography scale */
+  --font-size-footer: 0.4375rem; /* 7px */
+  --font-size-tiny: 0.5rem; /* 8px */
+  --font-size-micro: 0.5625rem; /* 9px */
+  --font-size-xxs: 0.625rem; /* 10px */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 0.9375rem; /* 15px */
+  --font-size-lg: 1rem; /* 16px */
+}

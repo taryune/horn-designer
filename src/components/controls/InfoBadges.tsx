@@ -7,6 +7,7 @@
 
 import { useWaveguide } from '../../context/WaveguideContext'
 import { useMeshData } from '../../hooks/useMeshData'
+import { colors } from '../../lib/design-tokens'
 
 export function InfoBadges() {
   const { metrics } = useMeshData()
@@ -31,17 +32,17 @@ export function InfoBadges() {
       {info.map(([label, value]) => (
         <div
           key={label}
-          className="rounded-[4px] text-[8.5px]"
+          className="rounded-[4px] text-xs"
           style={{
-            background: '#1a1810',
-            border: '1px solid #282418',
+            background: colors.secondary,
+            border: `1px solid ${colors.panelBorderLight}`,
             padding: '4px 7px',
           }}
         >
-          <div className="text-[7px] uppercase tracking-[1px]" style={{ color: '#4a4430' }}>
+          <div className="text-xxs uppercase tracking-[1px]" style={{ color: colors.textSubtle }}>
             {label}
           </div>
-          <div className="font-bold mt-[1px]" style={{ color: '#e0d4a8' }}>
+          <div className="font-bold mt-[1px]" style={{ color: colors.secondaryForeground }}>
             {value}
           </div>
         </div>

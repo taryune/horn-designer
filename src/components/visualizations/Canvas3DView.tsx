@@ -2,6 +2,7 @@ import { useWaveguide } from '../../context/WaveguideContext'
 import { useCanvas } from '../../hooks/useCanvas'
 import { useDragRotation } from '../../hooks/useDragRotation'
 import { useMeshData } from '../../hooks/useMeshData'
+import { canvasColors } from '../../lib/design-tokens'
 import { rot3 } from '../../lib/math/geometry'
 
 export function Canvas3DView() {
@@ -14,11 +15,11 @@ export function Canvas3DView() {
       const w = canvas.width / (window.devicePixelRatio || 1)
       const h = canvas.height / (window.devicePixelRatio || 1)
 
-      ctx.fillStyle = '#0a0a0a'
+      ctx.fillStyle = canvasColors.background
       ctx.fillRect(0, 0, w, h)
 
       if (!meshData) {
-        ctx.fillStyle = '#605840'
+        ctx.fillStyle = canvasColors.text
         ctx.font = '14px monospace'
         ctx.textAlign = 'center'
         ctx.fillText('No mesh data', w / 2, h / 2)
@@ -81,7 +82,7 @@ export function Canvas3DView() {
       // Draw longitudinal lines
       const step = Math.max(1, Math.floor(numSlices / 18))
       for (let si = 0; si <= numSlices; si += step) {
-        ctx.strokeStyle = 'rgba(200,168,78,0.08)'
+        ctx.strokeStyle = canvasColors.primaryGrid
         ctx.lineWidth = 0.4
         ctx.beginPath()
         for (const [ri, { ring }] of rings.entries()) {
@@ -94,7 +95,7 @@ export function Canvas3DView() {
 
       // Draw H guide (θ=0° and θ=180°)
       const halfSlice = Math.round(numSlices / 2)
-      ctx.strokeStyle = '#e8943a90'
+      ctx.strokeStyle = canvasColors.hGuide90
       ctx.lineWidth = 2
 
       // θ=0° (positive X-axis)
@@ -118,7 +119,7 @@ export function Canvas3DView() {
       // Draw V guide (θ=90° and θ=270°)
       const quarterSlice = Math.round(numSlices / 4)
       const threeQuarterSlice = Math.round((3 * numSlices) / 4)
-      ctx.strokeStyle = '#4a9de890'
+      ctx.strokeStyle = canvasColors.vGuide90
       ctx.lineWidth = 2
 
       // θ=90° (positive Y-axis)
@@ -154,7 +155,7 @@ export function Canvas3DView() {
         const d5 = Math.round((5 * numSlices) / 8) // 225°
         const d7 = Math.round((7 * numSlices) / 8) // 315°
 
-        ctx.strokeStyle = '#a06cf070'
+        ctx.strokeStyle = canvasColors.xMod70
         ctx.lineWidth = 1.5
 
         for (const si of [d1, d3, d5, d7]) {
@@ -169,20 +170,20 @@ export function Canvas3DView() {
       }
 
       // Draw legend
-      ctx.font = '10px monospace'
+      ctx.font = '12px monospace'
       ctx.textAlign = 'left'
-      ctx.fillStyle = '#e8943a'
+      ctx.fillStyle = canvasColors.hGuide
       ctx.fillText('▬ H guide', 14, h - 42)
-      ctx.fillStyle = '#4a9de8'
+      ctx.fillStyle = canvasColors.vGuide
       ctx.fillText('▬ V guide', 14, h - 26)
       if (state.xMod.enabled) {
-        ctx.fillStyle = '#a06cf0'
+        ctx.fillStyle = canvasColors.xMod
         ctx.fillText('▬ Diagonal', 14, h - 10)
       }
 
       // Instructions
-      ctx.fillStyle = '#605840'
-      ctx.font = '10px monospace'
+      ctx.fillStyle = canvasColors.text
+      ctx.font = '12px monospace'
       ctx.textAlign = 'right'
       ctx.fillText('Drag to rotate', w - 14, h - 10)
     },

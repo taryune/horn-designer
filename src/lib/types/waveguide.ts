@@ -227,11 +227,11 @@ export const DEFAULT_PARAMS: WaveguideState = {
     shapePow: 1.6,
   },
   xMod: {
-    enabled: true,
+    enabled: false,
     base: 0.3,
     amp: 0.5,
     freq: 2.0,
-    exp: 4.0,
+    exp: 1.0,
     blendStart: 0.2,
     blendPow: 2.0,
   },

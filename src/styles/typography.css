@@ -1,0 +1,33 @@
+/* Typography utility classes */
+
+.text-footer {
+  font-size: var(--font-size-footer);
+}
+
+.text-tiny {
+  font-size: var(--font-size-tiny);
+}
+
+.text-micro {
+  font-size: var(--font-size-micro);
+}
+
+.text-xxs {
+  font-size: var(--font-size-xxs);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+}
+
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-base {
+  font-size: var(--font-size-base);
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+}

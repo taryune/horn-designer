@@ -6,6 +6,7 @@
  */
 
 import { useWaveguide } from '../../context/WaveguideContext'
+import { colors } from '../../lib/design-tokens'
 import { Canvas3DView } from '../visualizations/Canvas3DView'
 import { CanvasCrossSectionView } from '../visualizations/CanvasCrossSectionView'
 import { CanvasGuidesView } from '../visualizations/CanvasGuidesView'
@@ -23,18 +24,21 @@ export function VisualizationPanel() {
 
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
-      <div className="flex" style={{ borderBottom: '1px solid #201c16', background: '#13110d' }}>
+      <div
+        className="flex"
+        style={{ borderBottom: `1px solid ${colors.panelBorder}`, background: colors.panelBg }}
+      >
         {tabs.map(({ id, label }) => (
           <button
             key={id}
             onClick={() => dispatch({ type: 'SET_VISUALIZATION_MODE', mode: id })}
-            className="text-[9px] font-bold tracking-[1.2px] cursor-pointer"
+            className="text-micro font-bold tracking-[1.2px] cursor-pointer"
             style={{
               padding: '9px 16px',
-              background: state.visualizationMode === id ? '#1c1a14' : 'transparent',
+              background: state.visualizationMode === id ? colors.card : 'transparent',
               border: 'none',
-              borderBottom: `2px solid ${state.visualizationMode === id ? '#c8a84e' : 'transparent'}`,
-              color: state.visualizationMode === id ? '#c8a84e' : '#4a4430',
+              borderBottom: `2px solid ${state.visualizationMode === id ? colors.primary : 'transparent'}`,
+              color: state.visualizationMode === id ? colors.primary : colors.textSubtle,
               fontFamily: 'inherit',
             }}
           >
@@ -42,7 +46,10 @@ export function VisualizationPanel() {
           </button>
         ))}
         {state.visualizationMode === '3d' && (
-          <span className="ml-auto self-center text-[8px] pr-[14px]" style={{ color: '#302c20' }}>
+          <span
+            className="ml-auto self-center text-tiny pr-[14px]"
+            style={{ color: colors.textSubtleDark }}
+          >
             drag to orbit
           </span>
         )}

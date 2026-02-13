@@ -1,5 +1,6 @@
 import { useWaveguide } from '../../context/WaveguideContext'
 import { useCanvas } from '../../hooks/useCanvas'
+import { canvasColors } from '../../lib/design-tokens'
 import { generateXModPreview } from '../../lib/math/xModulation'
 
 export function CanvasXModView() {
@@ -11,7 +12,7 @@ export function CanvasXModView() {
       const w = canvas.width / (window.devicePixelRatio || 1)
       const h = canvas.height / (window.devicePixelRatio || 1)
 
-      ctx.fillStyle = '#0a0a0a'
+      ctx.fillStyle = canvasColors.background
       ctx.fillRect(0, 0, w, h)
 
       const cx = w / 2
@@ -19,7 +20,7 @@ export function CanvasXModView() {
       const maxR = Math.min(w, h) * 0.35
 
       // Grid circles
-      ctx.strokeStyle = '#1a1816'
+      ctx.strokeStyle = canvasColors.grid
       ctx.lineWidth = 0.5
       for (let r = 0.25; r <= 1; r += 0.25) {
         ctx.beginPath()
@@ -38,7 +39,7 @@ export function CanvasXModView() {
       ctx.setLineDash([])
 
       if (!xMod.enabled) {
-        ctx.fillStyle = '#605840'
+        ctx.fillStyle = canvasColors.text
         ctx.font = '14px monospace'
         ctx.textAlign = 'center'
         ctx.fillText('X-Modulation Disabled', cx, cy)
@@ -50,7 +51,7 @@ export function CanvasXModView() {
       const maxVal = Math.max(...points.map(([r]) => r))
       const scale = maxR / maxVal
 
-      ctx.strokeStyle = '#a06cf0'
+      ctx.strokeStyle = canvasColors.xMod
       ctx.lineWidth = 2
       ctx.beginPath()
       let first = true
@@ -68,8 +69,8 @@ export function CanvasXModView() {
       ctx.stroke()
 
       // Info
-      ctx.fillStyle = '#a06cf0'
-      ctx.font = '11px monospace'
+      ctx.fillStyle = canvasColors.xMod
+      ctx.font = '12px monospace'
       ctx.textAlign = 'left'
       ctx.fillText(
         `freq=${xMod.freq} amp=${xMod.amp.toFixed(2)} exp=${xMod.exp.toFixed(1)}`,

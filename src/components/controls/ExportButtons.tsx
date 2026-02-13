@@ -6,6 +6,7 @@
  */
 
 import { useExport } from '../../hooks/useExport'
+import { colors } from '../../lib/design-tokens'
 
 export function ExportButtons() {
   const { exportCSV, exportOBJ, hasData } = useExport()
@@ -15,12 +16,12 @@ export function ExportButtons() {
       <button
         onClick={exportCSV}
         disabled={!hasData}
-        className="flex-1 rounded-[4px] text-[10px] font-bold tracking-[1px] cursor-pointer"
+        className="flex-1 rounded-[4px] text-xxs font-bold tracking-[1px] cursor-pointer"
         style={{
           padding: '9px',
-          background: '#201c14',
-          border: '1px solid #3a3420',
-          color: '#c8a84e',
+          background: colors.panelHeaderBg,
+          border: `1px solid ${colors.panelBorderMedium}`,
+          color: colors.primary,
           fontFamily: 'inherit',
         }}
       >
@@ -29,12 +30,12 @@ export function ExportButtons() {
       <button
         onClick={exportOBJ}
         disabled={!hasData}
-        className="flex-1 rounded-[4px] text-[10px] font-bold tracking-[1px] cursor-pointer"
+        className="flex-1 rounded-[4px] text-xxs font-bold tracking-[1px] cursor-pointer"
         style={{
           padding: '9px',
-          background: '#201c14',
-          border: '1px solid #3a3420',
-          color: '#c8a84e',
+          background: colors.panelHeaderBg,
+          border: `1px solid ${colors.panelBorderMedium}`,
+          color: colors.primary,
           fontFamily: 'inherit',
         }}
       >

@@ -1,5 +1,6 @@
 import { useCanvas } from '../../hooks/useCanvas'
 import { useMeshData } from '../../hooks/useMeshData'
+import { canvasColors } from '../../lib/design-tokens'
 
 export function CanvasCrossSectionView() {
   const { meshData } = useMeshData()
@@ -9,11 +10,11 @@ export function CanvasCrossSectionView() {
       const w = canvas.width / (window.devicePixelRatio || 1)
       const h = canvas.height / (window.devicePixelRatio || 1)
 
-      ctx.fillStyle = '#0a0a0a'
+      ctx.fillStyle = canvasColors.background
       ctx.fillRect(0, 0, w, h)
 
       if (!meshData) {
-        ctx.fillStyle = '#605840'
+        ctx.fillStyle = canvasColors.text
         ctx.font = '14px monospace'
         ctx.textAlign = 'center'
         ctx.fillText('No mesh data', w / 2, h / 2)
@@ -48,13 +49,13 @@ export function CanvasCrossSectionView() {
       }
 
       // Legend
-      ctx.font = '9px monospace'
+      ctx.font = '12px monospace'
       ctx.textAlign = 'left'
       for (const [ti, tv] of tValues.entries()) {
         const f = ti / (tValues.length - 1)
         ctx.fillStyle = `rgb(${Math.round(74 + f * 158)},${Math.round(157 - f * 57)},${Math.round(232 - f * 172)})`
         ctx.fillRect(w - 75, 12 + ti * 14, 7, 7)
-        ctx.fillStyle = '#605840'
+        ctx.fillStyle = canvasColors.text
         ctx.fillText(`t=${tv.toFixed(2)}`, w - 64, 19 + ti * 14)
       }
     },

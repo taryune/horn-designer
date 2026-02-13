@@ -5,6 +5,8 @@
  * Reusable slider control for numeric parameters matching original styling.
  */
 
+import { colors, getWaveguideColor, type WaveguideType } from '../../lib/design-tokens'
+
 interface ParameterSliderProps {
   label: string
   value: number
@@ -12,7 +14,7 @@ interface ParameterSliderProps {
   max: number
   step: number
   onChange: (value: number) => void
-  color?: 'h-guide' | 'v-guide' | 'super-ellipse' | 'x-mod'
+  color?: WaveguideType
   unit?: string
   decimals?: number
 }
@@ -28,20 +30,13 @@ export function ParameterSlider({
   unit = '',
   decimals = 2,
 }: ParameterSliderProps) {
-  const accentColors = {
-    'h-guide': '#e8943a',
-    'v-guide': '#4a9de8',
-    'super-ellipse': '#b898d0',
-    'x-mod': '#a06cf0',
-  }
-
-  const accentColor = color ? accentColors[color] : '#c8a84e'
+  const accentColor = color ? getWaveguideColor(color) : colors.primary
 
   return (
     <div className="mb-[7px]">
       <div
-        className="flex justify-between text-[10px] mb-[1px]"
-        style={{ color: '#a09880', fontFamily: 'inherit' }}
+        className="flex justify-between text-xs mb-[1px]"
+        style={{ color: colors.mutedForeground, fontFamily: 'inherit' }}
       >
         <span>{label}</span>
         <span style={{ color: accentColor }}>
