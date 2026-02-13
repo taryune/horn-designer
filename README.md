@@ -1,6 +1,6 @@
-# R-OSSE Waveguide Designer
+# Horn Designer
 
-An interactive parametric tool for designing rectangular acoustic waveguides (horns) for loudspeaker compression drivers. Combines **R-OSSE axial expansion curves**, **superellipse cross-section morphing**, and **X-shape polar modulation** for complete waveguide geometry generation.
+An advanced interactive parametric tool for designing rectangular acoustic waveguides (horns) for loudspeaker compression drivers. Features **dual modulation system** with diagonal and cardinal reinforcement, **smoothstep C1-continuous blending**, and complete control over waveguide geometry generation.
 
 ## Quick Start
 
@@ -19,16 +19,18 @@ bun run build
 
 This tool generates 3D waveguide geometry suitable for 3D printing or CNC machining. It outputs the complete surface mesh that you can import into CAD software (FreeCAD, Fusion 360, SolidWorks, Blender, etc.) to create a solid body.
 
-The design approach combines three layers:
+The design approach combines four layers:
 
 ```
 Layer 1: R-OSSE Axial Profiles (H and V guide curves)
    ↓
-Layer 2: Superellipse Cross-Section Morphing (circle → rectangle)
+Layer 2: Superellipse Cross-Section with Smoothstep Morphing
    ↓
-Layer 3: X-Shape Polar Modulation (diagonal reinforcement)
+Layer 3: Dual Polar Modulation (Diagonal + Cardinal)
    ↓
-Final: Complete 3D waveguide mesh
+Layer 4: Smoothstep Blend Zones (Shape + Modulation)
+   ↓
+Final: Complete 3D waveguide mesh with C1 continuity
 ```
 
 ---
@@ -58,7 +60,7 @@ L  = [√(c₂² - 4·c₃·(c₁ - (R + r₀·(k-1))²)) - c₂] / (2·c₃)
 
 **This tool uses two independent R-OSSE curves** — one for horizontal expansion, one for vertical — enabling different coverage angles per axis (e.g., 90° × 60°).
 
-### 2. Superellipse Cross-Section
+### 2. Superellipse Cross-Section with Smoothstep Blending
 
 The cross-section at each axial station is a superellipse:
 
@@ -67,28 +69,47 @@ The cross-section at each axial station is a superellipse:
 ```
 
 Where:
-- `hw` = half-width (from H guide curve)
-- `hh` = half-height (from V guide curve)
+- `hw` = half-width (interpolated from throat circle to H guide curve)
+- `hh` = half-height (interpolated from throat circle to V guide curve)
 - `n` = shape exponent, transitioning from 2 (circle) to `nMouth` (rectangle)
 
-The exponent transition follows: `n(t) = 2 + (nMouth - 2) · f(t)^shapePow`
-
-### 3. X-Shape Polar Modulation
-
-A radial multiplier function adds material at the diagonals:
-
 ```
-r(θ) = base + amp · |sin(freq · θ)|^exp
+sf = smoothstep(t, shapeStart, shapeEnd)^shapePow
+n(t) = 2 + (nMouth - 2) · sf
+hw(t) = r₀ + sf · (yH(t) - r₀)
+hh(t) = r₀ + sf · (yV(t) - r₀)
 ```
 
-Default values: `r(θ) = 0.3 + 0.5·|sin(2θ)|⁴`
+This ensures C1 continuity (zero slope at boundaries), eliminating throat spikes.
 
-This produces four lobes at 45°/135°/225°/315°, addressing the **cross wavefront syndrome** in rectangular horns by equalizing path lengths between the cardinal and diagonal directions.
+### 3. Dual Polar Modulation System
 
-The modulation blends from zero effect at the throat to full effect at the mouth:
+#### Diagonal Modulation
+Adds material at the diagonals (45°/135°/225°/315°):
 ```
-blend_factor = clamp((t - blendStart) / (1 - blendStart))^blendPow
+rDiag(θ) = base + amp · |sin(freq · θ)|^exp
 ```
+
+#### Cardinal Modulation
+Reinforces the H/V axes (0°/90°/180°/270°):
+```
+rCard(θ) = base + amp · |cos(freq · θ)|^exp
+```
+
+Both modulations are:
+- Normalized to preserve cross-sectional area
+- Combined additively around 1.0
+- Blended using a shared smoothstep zone:
+
+```
+mf = smoothstep(t, modStart, modEnd)^modPow
+multiplier = 1 + mf · (normalizedDiag(θ) - 1) + mf · (normalizedCard(θ) - 1)
+```
+
+This dual system allows for:
+- Addressing **cross wavefront syndrome** with diagonal reinforcement
+- Counteracting rectangular thinning with cardinal reinforcement
+- Creating complex asymmetric patterns with non-integer frequencies
 
 ---
 
@@ -125,15 +146,16 @@ blend_factor = clamp((t - blendStart) / (1 - blendStart))^blendPow
 | Bending | b | 0.3 | 0–0.8 | Controls the rollback bending |
 | Throat shape | q | 3.7 | 1–10 | Controls throat-to-body transition sharpness |
 
-### Superellipse
+### Shape Blend Zone
 
 | Parameter | Default | Range | Description |
 |-----------|---------|-------|-------------|
 | n rectangularity | 4.5 | 2–10 | Mouth shape: 2=ellipse, 4-6=squircle, 10≈rectangle |
-| Transition start | 0.12 | 0–0.5 | Where along the horn the shape starts rectangularizing |
-| Shape power | 1.6 | 0.3–4 | How aggressively the transition happens |
+| Shape start | 0.05 | 0–0.6 | Where shape transition begins (smoothstep start) |
+| Shape end | 0.85 | 0.2–1.0 | Where shape transition completes (smoothstep end) |
+| Shape power | 1.0 | 0.3–4 | Blend curve exponent |
 
-### X-Shape Modulation
+### Diagnoal/Cardinal Modulation
 
 | Parameter | Default | Range | Description |
 |-----------|---------|-------|-------------|
