@@ -44,13 +44,15 @@ export const colors = {
   hGuide: 'var(--h-guide)',
   vGuide: 'var(--v-guide)',
   superEllipse: 'var(--super-ellipse)',
-  xMod: 'var(--x-mod)',
+  diagonalMod: 'var(--diagonal-mod)',
+  cardinalMod: 'var(--cardinal-mod)',
 
   // Waveguide borders
   hGuideBorder: 'var(--h-guide-border)',
   vGuideBorder: 'var(--v-guide-border)',
   superEllipseBorder: 'var(--super-ellipse-border)',
-  xModBorder: 'var(--x-mod-border)',
+  diagonalModBorder: 'var(--diagonal-mod-border)',
+  cardinalModBorder: 'var(--cardinal-mod-border)',
 
   // Waveguide with opacity
   hGuide30: 'var(--h-guide-30)',
@@ -59,8 +61,10 @@ export const colors = {
   vGuide30: 'var(--v-guide-30)',
   vGuide70: 'var(--v-guide-70)',
   vGuide90: 'var(--v-guide-90)',
-  xMod30: 'var(--x-mod-30)',
-  xMod70: 'var(--x-mod-70)',
+  diagonalMod30: 'var(--diagonal-mod-30)',
+  diagonalMod70: 'var(--diagonal-mod-70)',
+  cardinalMod30: 'var(--cardinal-mod-30)',
+  cardinalMod70: 'var(--cardinal-mod-70)',
 
   // Primary with opacity
   primary08: 'var(--primary-08)',
@@ -84,14 +88,16 @@ export const canvasColors = {
   hGuide: '#e8943a',
   vGuide: '#4a9de8',
   superEllipse: '#b898d0',
-  xMod: '#a06cf0',
+  diagonalMod: '#a06cf0',
+  cardinalMod: '#6ce88a',
 
   // With opacity (for canvas contexts)
   hGuide90: '#e8943a90',
   hGuide70: '#e8943a70',
   vGuide90: '#4a9de890',
   vGuide70: '#4a9de870',
-  xMod70: '#a06cf070',
+  diagonalMod70: '#a06cf070',
+  cardinalMod70: '#6ce88a70',
 
   // Primary color with opacity
   primaryGrid: 'rgba(200,168,78,0.08)',
@@ -114,7 +120,12 @@ export const fontSize = {
 /**
  * Type-safe waveguide type
  */
-export type WaveguideType = 'h-guide' | 'v-guide' | 'super-ellipse' | 'x-mod'
+export type WaveguideType =
+  | 'h-guide'
+  | 'v-guide'
+  | 'super-ellipse'
+  | 'diagonal-mod'
+  | 'cardinal-mod'
 
 /**
  * Helper to get color by waveguide type
@@ -124,7 +135,8 @@ export const getWaveguideColor = (type: WaveguideType): string => {
     'h-guide': colors.hGuide,
     'v-guide': colors.vGuide,
     'super-ellipse': colors.superEllipse,
-    'x-mod': colors.xMod,
+    'diagonal-mod': colors.diagonalMod,
+    'cardinal-mod': colors.cardinalMod,
   }
   return colorMap[type]
 }
@@ -137,7 +149,8 @@ export const getWaveguideBorderColor = (type: WaveguideType): string => {
     'h-guide': colors.hGuideBorder,
     'v-guide': colors.vGuideBorder,
     'super-ellipse': colors.superEllipseBorder,
-    'x-mod': colors.xModBorder,
+    'diagonal-mod': colors.diagonalModBorder,
+    'cardinal-mod': colors.cardinalModBorder,
   }
   return borderMap[type]
 }
@@ -150,7 +163,8 @@ export const getCanvasWaveguideColor = (type: WaveguideType): string => {
     'h-guide': canvasColors.hGuide,
     'v-guide': canvasColors.vGuide,
     'super-ellipse': canvasColors.superEllipse,
-    'x-mod': canvasColors.xMod,
+    'diagonal-mod': canvasColors.diagonalMod,
+    'cardinal-mod': canvasColors.cardinalMod,
   }
   return canvasColorMap[type]
 }

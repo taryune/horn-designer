@@ -5,6 +5,13 @@
  * Barrel export for all mathematical functions used in waveguide design.
  */
 
+// Blending functions
+export {
+  poweredSmoothstep,
+  smoothLerp,
+  smoothstep,
+  smoothstep5,
+} from './blending'
 // Geometry utilities
 export {
   cartesianToPolar,
@@ -17,9 +24,15 @@ export {
 } from './geometry'
 // 3D mesh generation
 export { buildMesh, computeMeshMetrics } from './mesh'
+// Dual modulation system
+export {
+  combinedModulation,
+  generateModulationPreview,
+  modRawCardinal,
+  modRawDiagonal,
+  prepModParams,
+} from './modulation'
 // R-OSSE parametric equations
 export { computeROSSE, lookupX, lookupY } from './rosse'
 // Superellipse cross-sections
 export { computeSuperellipseN, superellipsePoints } from './superellipse'
-// X-shape polar modulation
-export { generateXModPreview, xModRaw, xModulation } from './xModulation'

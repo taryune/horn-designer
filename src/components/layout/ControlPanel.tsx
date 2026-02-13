@@ -6,14 +6,16 @@
  */
 
 import { colors } from '../../lib/design-tokens'
+import { CardinalModSection } from '../controls/CardinalModSection'
+import { DiagonalModSection } from '../controls/DiagonalModSection'
 import { ExportButtons } from '../controls/ExportButtons'
 import { HorizontalGuideSection } from '../controls/HorizontalGuideSection'
 import { InfoBadges } from '../controls/InfoBadges'
+import { ModulationBlendSection } from '../controls/ModulationBlendSection'
 import { ProfileShapeSection } from '../controls/ProfileShapeSection'
-import { SuperellipseSection } from '../controls/SuperellipseSection'
+import { ShapeBlendSection } from '../controls/ShapeBlendSection'
 import { ThroatSection } from '../controls/ThroatSection'
 import { VerticalGuideSection } from '../controls/VerticalGuideSection'
-import { XModulationSection } from '../controls/XModulationSection'
 
 export function ControlPanel() {
   return (
@@ -32,7 +34,7 @@ export function ControlPanel() {
         Horn Designer
       </div>
       <div className="mb-[10px] text-xs tracking-[1px]" style={{ color: colors.textSubtle }}>
-        X-SHAPE MODULATED WAVEGUIDE
+        DUAL MODULATED WAVEGUIDE
       </div>
 
       <InfoBadges />
@@ -43,14 +45,16 @@ export function ControlPanel() {
       <HorizontalGuideSection />
       <VerticalGuideSection />
       <ProfileShapeSection />
-      <SuperellipseSection />
-      <XModulationSection />
+      <ShapeBlendSection />
+      <ModulationBlendSection />
+      <DiagonalModSection />
+      <CardinalModSection />
 
       <ExportButtons />
 
       <div className="text-footer leading-[1.6] px-[2px]" style={{ color: colors.textSubtleDark }}>
-        R-OSSE by Marcel Batík (at-horns.eu). X-shape polar modulation for diagonal coverage
-        reinforcement.
+        R-OSSE v2 with dual modulation system. Based on R-OSSE by Marcel Batík (at-horns.eu).
+        Features smoothstep blending and diagonal/cardinal modulation.
       </div>
     </div>
   )

@@ -149,13 +149,13 @@ export function Canvas3DView() {
       ctx.stroke()
 
       // Draw diagonal guides (when X-mod enabled)
-      if (state.xMod.enabled) {
+      if (state.diagonalMod.enabled) {
         const d1 = Math.round(numSlices / 8) // 45°
         const d3 = Math.round((3 * numSlices) / 8) // 135°
         const d5 = Math.round((5 * numSlices) / 8) // 225°
         const d7 = Math.round((7 * numSlices) / 8) // 315°
 
-        ctx.strokeStyle = canvasColors.xMod70
+        ctx.strokeStyle = canvasColors.diagonalMod70
         ctx.lineWidth = 1.5
 
         for (const si of [d1, d3, d5, d7]) {
@@ -176,8 +176,8 @@ export function Canvas3DView() {
       ctx.fillText('▬ H guide', 14, h - 42)
       ctx.fillStyle = canvasColors.vGuide
       ctx.fillText('▬ V guide', 14, h - 26)
-      if (state.xMod.enabled) {
-        ctx.fillStyle = canvasColors.xMod
+      if (state.diagonalMod.enabled) {
+        ctx.fillStyle = canvasColors.diagonalMod
         ctx.fillText('▬ Diagonal', 14, h - 10)
       }
 
@@ -187,7 +187,7 @@ export function Canvas3DView() {
       ctx.textAlign = 'right'
       ctx.fillText('Drag to rotate', w - 14, h - 10)
     },
-    [meshData, rotationX, rotationY, state.xMod.enabled],
+    [meshData, rotationX, rotationY, state.diagonalMod.enabled],
   )
 
   return <canvas ref={canvasRef} className="w-full h-full" {...handlers} />

@@ -39,13 +39,15 @@
   --h-guide: #e8943a;
   --v-guide: #4a9de8;
   --super-ellipse: #b898d0;
-  --x-mod: #a06cf0;
+  --diagonal-mod: #a06cf0;
+  --cardinal-mod: #6ce88a;
 
   /* Waveguide colors - Border accents */
   --h-guide-border: #3a2c14;
   --v-guide-border: #1a2c44;
   --super-ellipse-border: #382848;
-  --x-mod-border: #44286a;
+  --diagonal-mod-border: #44286a;
+  --cardinal-mod-border: #2a4438;
 
   /* Waveguide colors - Opacity variants (for overlays and canvas) */
   --h-guide-30: #e8943a30;
@@ -54,8 +56,10 @@
   --v-guide-30: #4a9de830;
   --v-guide-70: #4a9de870;
   --v-guide-90: #4a9de890;
-  --x-mod-30: #a06cf030;
-  --x-mod-70: #a06cf070;
+  --diagonal-mod-30: #a06cf030;
+  --diagonal-mod-70: #a06cf070;
+  --cardinal-mod-30: #6ce88a30;
+  --cardinal-mod-70: #6ce88a70;
 
   /* Primary color with opacity */
   --primary-08: #c8a84e14; /* ~8% opacity */

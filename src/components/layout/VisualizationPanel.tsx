@@ -8,9 +8,10 @@
 import { useWaveguide } from '../../context/WaveguideContext'
 import { colors } from '../../lib/design-tokens'
 import { Canvas3DView } from '../visualizations/Canvas3DView'
+import { CanvasBlendCurvesView } from '../visualizations/CanvasBlendCurvesView'
 import { CanvasCrossSectionView } from '../visualizations/CanvasCrossSectionView'
 import { CanvasGuidesView } from '../visualizations/CanvasGuidesView'
-import { CanvasXModView } from '../visualizations/CanvasXModView'
+import { CanvasModView } from '../visualizations/CanvasModView'
 
 export function VisualizationPanel() {
   const { state, dispatch } = useWaveguide()
@@ -19,7 +20,8 @@ export function VisualizationPanel() {
     { id: '3d' as const, label: '3D VIEW' },
     { id: 'guides' as const, label: 'GUIDES' },
     { id: 'cross' as const, label: 'CROSS-SECTIONS' },
-    { id: 'xmod' as const, label: 'X-MOD POLAR' },
+    { id: 'xmod' as const, label: 'MOD POLAR' },
+    { id: 'blend' as const, label: 'BLEND CURVES' },
   ]
 
   return (
@@ -58,7 +60,8 @@ export function VisualizationPanel() {
         {state.visualizationMode === '3d' && <Canvas3DView />}
         {state.visualizationMode === 'guides' && <CanvasGuidesView />}
         {state.visualizationMode === 'cross' && <CanvasCrossSectionView />}
-        {state.visualizationMode === 'xmod' && <CanvasXModView />}
+        {state.visualizationMode === 'xmod' && <CanvasModView />}
+        {state.visualizationMode === 'blend' && <CanvasBlendCurvesView />}
       </div>
     </div>
   )

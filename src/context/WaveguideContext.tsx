@@ -8,10 +8,12 @@
 
 import { createContext, type Dispatch, type ReactNode, useContext, useReducer } from 'react'
 import type {
+  CardinalModParams,
+  DiagonalModParams,
+  ModulationBlendParams,
   ROSSEParams,
-  SuperellipseParams,
+  ShapeBlendParams,
   WaveguideState,
-  XModParams,
 } from '../lib/types/waveguide'
 import { DEFAULT_PARAMS } from '../lib/types/waveguide'
 
@@ -21,9 +23,20 @@ import { DEFAULT_PARAMS } from '../lib/types/waveguide'
 type WaveguideAction =
   | { type: 'UPDATE_H_PARAM'; param: keyof ROSSEParams; value: number }
   | { type: 'UPDATE_V_PARAM'; param: keyof ROSSEParams; value: number }
-  | { type: 'UPDATE_SUPERELLIPSE'; param: keyof SuperellipseParams; value: number }
-  | { type: 'UPDATE_XMOD_NUMBER'; param: keyof Omit<XModParams, 'enabled'>; value: number }
-  | { type: 'UPDATE_XMOD_ENABLED'; value: boolean }
+  | { type: 'UPDATE_SHAPE_BLEND'; param: keyof ShapeBlendParams; value: number }
+  | { type: 'UPDATE_MOD_BLEND'; param: keyof ModulationBlendParams; value: number }
+  | {
+      type: 'UPDATE_DIAGONAL_NUMBER'
+      param: keyof Omit<DiagonalModParams, 'enabled'>
+      value: number
+    }
+  | { type: 'UPDATE_DIAGONAL_ENABLED'; value: boolean }
+  | {
+      type: 'UPDATE_CARDMOD_NUMBER'
+      param: keyof Omit<CardinalModParams, 'enabled'>
+      value: number
+    }
+  | { type: 'UPDATE_CARDMOD_ENABLED'; value: boolean }
   | { type: 'SET_VISUALIZATION_MODE'; mode: WaveguideState['visualizationMode'] }
   | { type: 'RESET_TO_DEFAULTS' }
 
@@ -58,29 +71,56 @@ function waveguideReducer(state: WaveguideState, action: WaveguideAction): Waveg
         },
       }
 
-    case 'UPDATE_SUPERELLIPSE':
+    case 'UPDATE_SHAPE_BLEND':
       return {
         ...state,
-        superellipse: {
-          ...state.superellipse,
+        shapeBlend: {
+          ...state.shapeBlend,
           [action.param]: action.value,
         },
       }
 
-    case 'UPDATE_XMOD_NUMBER':
+    case 'UPDATE_MOD_BLEND':
       return {
         ...state,
-        xMod: {
-          ...state.xMod,
+        modBlend: {
+          ...state.modBlend,
           [action.param]: action.value,
         },
       }
 
-    case 'UPDATE_XMOD_ENABLED':
+    case 'UPDATE_DIAGONAL_NUMBER':
       return {
         ...state,
-        xMod: {
-          ...state.xMod,
+        diagonalMod: {
+          ...state.diagonalMod,
+          [action.param]: action.value,
+        },
+      }
+
+    case 'UPDATE_DIAGONAL_ENABLED':
+      return {
+        ...state,
+        diagonalMod: {
+          ...state.diagonalMod,
+          enabled: action.value,
+        },
+      }
+
+    case 'UPDATE_CARDMOD_NUMBER':
+      return {
+        ...state,
+        cardinalMod: {
+          ...state.cardinalMod,
+          [action.param]: action.value,
+        },
+      }
+
+    case 'UPDATE_CARDMOD_ENABLED':
+      return {
+        ...state,
+        cardinalMod: {
+          ...state.cardinalMod,
           enabled: action.value,
         },
       }

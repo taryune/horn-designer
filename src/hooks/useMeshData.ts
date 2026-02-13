@@ -29,10 +29,18 @@ export function useMeshData() {
   // Compute vertical R-OSSE guide
   const vData: ROSSEResult | null = useMemo(() => computeROSSE(state.vertical), [state.vertical])
 
-  // Build complete 3D mesh
+  // Build complete 3D mesh with v2 dual modulation
   const meshData: MeshData | null = useMemo(
-    () => buildMesh(hData, vData, state.superellipse, state.xMod),
-    [hData, vData, state.superellipse, state.xMod],
+    () =>
+      buildMesh(
+        hData,
+        vData,
+        state.shapeBlend,
+        state.modBlend,
+        state.diagonalMod,
+        state.cardinalMod,
+      ),
+    [hData, vData, state.shapeBlend, state.modBlend, state.diagonalMod, state.cardinalMod],
   )
 
   // Compute metrics for display

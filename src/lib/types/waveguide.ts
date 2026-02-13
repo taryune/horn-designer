@@ -39,53 +39,90 @@ export interface ROSSEParams {
 }
 
 /**
- * Superellipse (Lamé curve) parameters for cross-section morphing.
+ * Shape blend zone parameters for superellipse/aspect ratio morphing.
  *
- * Equation: |x/hw|^n + |y/hh|^n = 1
- * - n=2: ellipse/circle
- * - n>2: rounded rectangle
- * - n→∞: rectangle
+ * Controls the transition from circular throat to rectangular mouth.
+ * Uses smoothstep blending for C1 continuity.
  */
-export interface SuperellipseParams {
+export interface ShapeBlendParams {
   /** Superellipse exponent at mouth (2=ellipse, ∞=rectangle) */
   nMouth: number
 
-  /** Transition start parameter (0..1) */
-  transStart: number
+  /** Shape blend start parameter (0..1) */
+  shapeStart: number
 
-  /** Shape transition power/curve */
+  /** Shape blend end parameter (0..1) */
+  shapeEnd: number
+
+  /** Shape blend power/curve */
   shapePow: number
 }
 
 /**
- * X-shape polar modulation parameters.
+ * Modulation blend zone parameters.
+ *
+ * Controls when polar modulations (X and +) ramp in.
+ * Shared by both modulation types.
+ */
+export interface ModulationBlendParams {
+  /** Modulation blend start parameter (0..1) */
+  modStart: number
+
+  /** Modulation blend end parameter (0..1) */
+  modEnd: number
+
+  /** Modulation blend power/curve */
+  modPow: number
+}
+
+/**
+ * Diagonal polar modulation parameters.
  *
  * Applies diagonal reinforcement to address "cross wavefront syndrome"
- * in rectangular horns.
+ * in rectangular horns. Peaks at 45°, 135°, 225°, 315°.
  *
  * Function: r(θ) = base + amp · |sin(freq·θ)|^exp
  */
-export interface XModParams {
-  /** Enable/disable X-modulation */
+export interface DiagonalModParams {
+  /** Enable/disable diagonal modulation */
   enabled: boolean
 
-  /** Base value (offset) */
+  /** Base value (offset) [0.05..1.0] */
   base: number
 
-  /** Amplitude of modulation */
+  /** Amplitude of modulation [0..1.5] */
   amp: number
 
-  /** Frequency (typically 2 for X-shape) */
+  /** Frequency (2 = 4 lobes) [0.5..6.0] */
   freq: number
 
-  /** Exponent (controls sharpness) */
+  /** Exponent (controls sharpness) [1..12] */
   exp: number
+}
 
-  /** Blend start parameter (0..1) */
-  blendStart: number
+/**
+ * Cardinal polar modulation parameters.
+ *
+ * Reinforces H/V axes. Peaks at 0°, 90°, 180°, 270°.
+ * Can exaggerate rectangular character or counteract thinning.
+ *
+ * Function: r(θ) = base + amp · |cos(freq·θ)|^exp
+ */
+export interface CardinalModParams {
+  /** Enable/disable cardinal modulation */
+  enabled: boolean
 
-  /** Blend curve power */
-  blendPow: number
+  /** Base value (offset) [0.05..1.0] */
+  base: number
+
+  /** Amplitude of modulation [0..1.5] */
+  amp: number
+
+  /** Frequency (2 = 4 lobes) [0.5..6.0] */
+  freq: number
+
+  /** Exponent (controls sharpness) [1..12] */
+  exp: number
 }
 
 /**
@@ -98,14 +135,20 @@ export interface WaveguideState {
   /** Vertical R-OSSE guide curve parameters */
   vertical: ROSSEParams
 
-  /** Superellipse cross-section parameters */
-  superellipse: SuperellipseParams
+  /** Shape blend zone parameters */
+  shapeBlend: ShapeBlendParams
 
-  /** X-shape polar modulation parameters */
-  xMod: XModParams
+  /** Modulation blend zone parameters */
+  modBlend: ModulationBlendParams
+
+  /** Diagonal polar modulation parameters */
+  diagonalMod: DiagonalModParams
+
+  /** Cardinal polar modulation parameters */
+  cardinalMod: CardinalModParams
 
   /** Current visualization mode */
-  visualizationMode: 'guides' | 'cross' | 'xmod' | '3d'
+  visualizationMode: 'guides' | 'cross' | 'xmod' | '3d' | 'blend'
 }
 
 /**
@@ -196,7 +239,12 @@ export interface MeshData {
 }
 
 /**
- * Default parameter values for a standard horn configuration.
+ * Default parameter values for R-OSSE Waveguide Designer v2.
+ *
+ * Produces a waveguide similar to the ST260 example:
+ * - Coverage: 90° × 60°
+ * - Mouth: ~290 × 190 mm
+ * - Depth: ~78 mm
  */
 export const DEFAULT_PARAMS: WaveguideState = {
   horizontal: {
@@ -221,19 +269,30 @@ export const DEFAULT_PARAMS: WaveguideState = {
     m: 0.8,
     q: 3.7,
   },
-  superellipse: {
+  shapeBlend: {
     nMouth: 4.5,
-    transStart: 0.12,
-    shapePow: 1.6,
+    shapeStart: 0.05,
+    shapeEnd: 0.85,
+    shapePow: 1.0,
   },
-  xMod: {
+  modBlend: {
+    modStart: 0.15,
+    modEnd: 0.75,
+    modPow: 1.0,
+  },
+  diagonalMod: {
     enabled: false,
     base: 0.3,
     amp: 0.5,
     freq: 2.0,
-    exp: 1.0,
-    blendStart: 0.2,
-    blendPow: 2.0,
+    exp: 4.0,
+  },
+  cardinalMod: {
+    enabled: false,
+    base: 0.3,
+    amp: 0.5,
+    freq: 2.0,
+    exp: 4.0,
   },
   visualizationMode: '3d',
 }
