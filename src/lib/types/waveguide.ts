@@ -140,6 +140,26 @@ export interface MeshResolution {
 }
 
 /**
+ * Shell thickness parameters for CAD export.
+ *
+ * Controls wall thickness and caps for manufacturing-ready models.
+ * When disabled, exports surface-only mesh.
+ */
+export interface ShellParams {
+  /** Enable/disable shell thickness */
+  enabled: boolean
+
+  /** Wall thickness in mm [0.5..20] */
+  thickness: number
+
+  /** Close throat end with cap face */
+  throatCap: boolean
+
+  /** Close mouth end with cap face */
+  mouthCap: boolean
+}
+
+/**
  * Complete waveguide state containing all design parameters.
  */
 export interface WaveguideState {
@@ -163,6 +183,9 @@ export interface WaveguideState {
 
   /** Mesh resolution for 3D export */
   meshResolution: MeshResolution
+
+  /** Shell thickness for CAD export */
+  shellParams: ShellParams
 
   /** Current visualization mode */
   visualizationMode: 'guides' | 'cross' | 'xmod' | '3d' | 'blend'
@@ -314,6 +337,12 @@ export const DEFAULT_PARAMS: WaveguideState = {
   meshResolution: {
     rings: 50,
     slices: 72,
+  },
+  shellParams: {
+    enabled: false,
+    thickness: 3.0,
+    throatCap: false,
+    mouthCap: true,
   },
   visualizationMode: '3d',
 }

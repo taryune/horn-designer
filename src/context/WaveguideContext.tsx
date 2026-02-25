@@ -14,6 +14,7 @@ import type {
   ModulationBlendParams,
   ROSSEParams,
   ShapeBlendParams,
+  ShellParams,
   WaveguideState,
 } from '../lib/types/waveguide'
 import { DEFAULT_PARAMS } from '../lib/types/waveguide'
@@ -39,6 +40,14 @@ type WaveguideAction =
     }
   | { type: 'UPDATE_CARDMOD_ENABLED'; value: boolean }
   | { type: 'UPDATE_MESH_RESOLUTION'; param: keyof MeshResolution; value: number }
+  | {
+      type: 'UPDATE_SHELL_NUMBER'
+      param: keyof Omit<ShellParams, 'enabled' | 'throatCap' | 'mouthCap'>
+      value: number
+    }
+  | { type: 'UPDATE_SHELL_ENABLED'; value: boolean }
+  | { type: 'UPDATE_SHELL_THROAT_CAP'; value: boolean }
+  | { type: 'UPDATE_SHELL_MOUTH_CAP'; value: boolean }
   | { type: 'SET_VISUALIZATION_MODE'; mode: WaveguideState['visualizationMode'] }
   | { type: 'RESET_TO_DEFAULTS' }
 
@@ -133,6 +142,42 @@ function waveguideReducer(state: WaveguideState, action: WaveguideAction): Waveg
         meshResolution: {
           ...state.meshResolution,
           [action.param]: action.value,
+        },
+      }
+
+    case 'UPDATE_SHELL_NUMBER':
+      return {
+        ...state,
+        shellParams: {
+          ...state.shellParams,
+          [action.param]: action.value,
+        },
+      }
+
+    case 'UPDATE_SHELL_ENABLED':
+      return {
+        ...state,
+        shellParams: {
+          ...state.shellParams,
+          enabled: action.value,
+        },
+      }
+
+    case 'UPDATE_SHELL_THROAT_CAP':
+      return {
+        ...state,
+        shellParams: {
+          ...state.shellParams,
+          throatCap: action.value,
+        },
+      }
+
+    case 'UPDATE_SHELL_MOUTH_CAP':
+      return {
+        ...state,
+        shellParams: {
+          ...state.shellParams,
+          mouthCap: action.value,
         },
       }
 

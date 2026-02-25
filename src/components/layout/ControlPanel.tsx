@@ -15,6 +15,7 @@ import { MeshResolutionSection } from '../controls/MeshResolutionSection'
 import { ModulationBlendSection } from '../controls/ModulationBlendSection'
 import { ProfileShapeSection } from '../controls/ProfileShapeSection'
 import { ShapeBlendSection } from '../controls/ShapeBlendSection'
+import { ShellThicknessSection } from '../controls/ShellThicknessSection'
 import { ThroatSection } from '../controls/ThroatSection'
 import { VerticalGuideSection } from '../controls/VerticalGuideSection'
 
@@ -52,6 +53,7 @@ export function ControlPanel() {
       <CardinalModSection />
 
       <MeshResolutionSection />
+      <ShellThicknessSection />
 
       <ExportButtons />
 
