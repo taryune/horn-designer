@@ -279,6 +279,34 @@ export interface MeshData {
 }
 
 /**
+ * Metadata for YAML export/import.
+ */
+export interface WaveguideMetadata {
+  /** App version string */
+  version: string
+
+  /** ISO 8601 timestamp */
+  created: string
+
+  /** Application name */
+  appName: string
+
+  /** Optional user description */
+  description?: string
+}
+
+/**
+ * Complete export structure with metadata and state.
+ */
+export interface WaveguideExport {
+  /** Export metadata */
+  metadata: WaveguideMetadata
+
+  /** Waveguide design state */
+  state: WaveguideState
+}
+
+/**
  * Default parameter values for R-OSSE Waveguide Designer v2.
  *
  * Produces a waveguide similar to the ST260 example:

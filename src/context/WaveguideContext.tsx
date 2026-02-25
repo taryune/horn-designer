@@ -50,6 +50,7 @@ type WaveguideAction =
   | { type: 'UPDATE_SHELL_MOUTH_CAP'; value: boolean }
   | { type: 'SET_VISUALIZATION_MODE'; mode: WaveguideState['visualizationMode'] }
   | { type: 'RESET_TO_DEFAULTS' }
+  | { type: 'LOAD_FROM_FILE'; state: WaveguideState }
 
 /**
  * Context type definition
@@ -189,6 +190,21 @@ function waveguideReducer(state: WaveguideState, action: WaveguideAction): Waveg
 
     case 'RESET_TO_DEFAULTS':
       return { ...DEFAULT_PARAMS }
+
+    case 'LOAD_FROM_FILE':
+      // Deep merge with defaults to ensure all fields exist
+      return {
+        ...DEFAULT_PARAMS,
+        ...action.state,
+        horizontal: { ...DEFAULT_PARAMS.horizontal, ...action.state.horizontal },
+        vertical: { ...DEFAULT_PARAMS.vertical, ...action.state.vertical },
+        shapeBlend: { ...DEFAULT_PARAMS.shapeBlend, ...action.state.shapeBlend },
+        modBlend: { ...DEFAULT_PARAMS.modBlend, ...action.state.modBlend },
+        diagonalMod: { ...DEFAULT_PARAMS.diagonalMod, ...action.state.diagonalMod },
+        cardinalMod: { ...DEFAULT_PARAMS.cardinalMod, ...action.state.cardinalMod },
+        meshResolution: { ...DEFAULT_PARAMS.meshResolution, ...action.state.meshResolution },
+        shellParams: { ...DEFAULT_PARAMS.shellParams, ...action.state.shellParams },
+      }
 
     default:
       return state

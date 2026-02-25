@@ -14,6 +14,7 @@ import { InfoBadges } from '../controls/InfoBadges'
 import { MeshResolutionSection } from '../controls/MeshResolutionSection'
 import { ModulationBlendSection } from '../controls/ModulationBlendSection'
 import { ProfileShapeSection } from '../controls/ProfileShapeSection'
+import { ProjectControls } from '../controls/ProjectControls'
 import { ShapeBlendSection } from '../controls/ShapeBlendSection'
 import { ShellThicknessSection } from '../controls/ShellThicknessSection'
 import { ThroatSection } from '../controls/ThroatSection'
@@ -42,6 +43,8 @@ export function ControlPanel() {
       <InfoBadges />
 
       <div className="mb-[7px]" />
+
+      <ProjectControls />
 
       <ThroatSection />
       <HorizontalGuideSection />
