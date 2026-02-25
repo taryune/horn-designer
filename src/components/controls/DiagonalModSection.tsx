@@ -24,6 +24,7 @@ export function DiagonalModSection() {
           DIAGONAL MODULATION
         </div>
         <button
+          type="button"
           onClick={() => dispatch({ type: 'UPDATE_DIAGONAL_ENABLED', value: !d.enabled })}
           className="rounded-[3px] text-micro font-bold cursor-pointer"
           style={{

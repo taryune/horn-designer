@@ -36,6 +36,7 @@ export function useCanvas(
 
     // Render
     renderFn(ctx, canvas)
+    // biome-ignore lint/correctness/useExhaustiveDependencies: dependencies are passed as parameter
   }, dependencies)
 
   return canvasRef

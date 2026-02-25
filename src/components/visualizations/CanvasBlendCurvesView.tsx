@@ -117,7 +117,7 @@ export function CanvasBlendCurvesView() {
       ctx.stroke()
 
       // Plot superellipse n value on secondary axis (scaled)
-      ctx.strokeStyle = canvasColors.superEllipse + '60'
+      ctx.strokeStyle = `${canvasColors.superEllipse}60`
       ctx.lineWidth = 1
       ctx.setLineDash([4, 4])
       ctx.beginPath()
@@ -173,7 +173,7 @@ export function CanvasBlendCurvesView() {
       ctx.fillStyle = canvasColors.text
       ctx.fillText('mod blend', margin + 30, legendY + 19)
 
-      ctx.strokeStyle = canvasColors.superEllipse + '60'
+      ctx.strokeStyle = `${canvasColors.superEllipse}60`
       ctx.lineWidth = 1
       ctx.setLineDash([4, 4])
       ctx.beginPath()

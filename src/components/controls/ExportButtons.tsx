@@ -16,6 +16,7 @@ export function ExportButtons() {
       {/* Top row: CSV and OBJ */}
       <div className="flex gap-[4px]">
         <button
+          type="button"
           onClick={exportCSV}
           disabled={!hasData}
           className="flex-1 rounded-[4px] text-xxs font-bold tracking-[1px] cursor-pointer"
@@ -30,6 +31,7 @@ export function ExportButtons() {
           ▼ CSV
         </button>
         <button
+          type="button"
           onClick={exportOBJ}
           disabled={!hasData}
           className="flex-1 rounded-[4px] text-xxs font-bold tracking-[1px] cursor-pointer"
@@ -47,6 +49,7 @@ export function ExportButtons() {
 
       {/* Bottom row: STL */}
       <button
+        type="button"
         onClick={exportSTL}
         disabled={!hasData}
         className="w-full rounded-[4px] text-xxs font-bold tracking-[1px] cursor-pointer"

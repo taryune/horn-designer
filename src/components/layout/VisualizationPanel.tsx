@@ -32,6 +32,7 @@ export function VisualizationPanel() {
       >
         {tabs.map(({ id, label }) => (
           <button
+            type="button"
             key={id}
             onClick={() => dispatch({ type: 'SET_VISUALIZATION_MODE', mode: id })}
             className="text-micro font-bold tracking-[1.2px] cursor-pointer"

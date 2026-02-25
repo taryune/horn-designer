@@ -24,6 +24,7 @@ export function CardinalModSection() {
           CARDINAL MODULATION
         </div>
         <button
+          type="button"
           onClick={() => dispatch({ type: 'UPDATE_CARDMOD_ENABLED', value: !c.enabled })}
           className="rounded-[3px] text-micro font-bold cursor-pointer"
           style={{
