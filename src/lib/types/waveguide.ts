@@ -126,6 +126,20 @@ export interface CardinalModParams {
 }
 
 /**
+ * Mesh resolution parameters for 3D geometry generation.
+ *
+ * Controls the tessellation density of the exported mesh.
+ * Higher values produce smoother geometry but larger file sizes.
+ */
+export interface MeshResolution {
+  /** Number of rings (axial divisions) [20..200] */
+  rings: number
+
+  /** Number of slices (angular divisions) [36..256] */
+  slices: number
+}
+
+/**
  * Complete waveguide state containing all design parameters.
  */
 export interface WaveguideState {
@@ -146,6 +160,9 @@ export interface WaveguideState {
 
   /** Cardinal polar modulation parameters */
   cardinalMod: CardinalModParams
+
+  /** Mesh resolution for 3D export */
+  meshResolution: MeshResolution
 
   /** Current visualization mode */
   visualizationMode: 'guides' | 'cross' | 'xmod' | '3d' | 'blend'
@@ -293,6 +310,10 @@ export const DEFAULT_PARAMS: WaveguideState = {
     amp: 0.5,
     freq: 2.0,
     exp: 4.0,
+  },
+  meshResolution: {
+    rings: 50,
+    slices: 72,
   },
   visualizationMode: '3d',
 }

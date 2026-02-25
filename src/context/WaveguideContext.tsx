@@ -10,6 +10,7 @@ import { createContext, type Dispatch, type ReactNode, useContext, useReducer } 
 import type {
   CardinalModParams,
   DiagonalModParams,
+  MeshResolution,
   ModulationBlendParams,
   ROSSEParams,
   ShapeBlendParams,
@@ -37,6 +38,7 @@ type WaveguideAction =
       value: number
     }
   | { type: 'UPDATE_CARDMOD_ENABLED'; value: boolean }
+  | { type: 'UPDATE_MESH_RESOLUTION'; param: keyof MeshResolution; value: number }
   | { type: 'SET_VISUALIZATION_MODE'; mode: WaveguideState['visualizationMode'] }
   | { type: 'RESET_TO_DEFAULTS' }
 
@@ -122,6 +124,15 @@ function waveguideReducer(state: WaveguideState, action: WaveguideAction): Waveg
         cardinalMod: {
           ...state.cardinalMod,
           enabled: action.value,
+        },
+      }
+
+    case 'UPDATE_MESH_RESOLUTION':
+      return {
+        ...state,
+        meshResolution: {
+          ...state.meshResolution,
+          [action.param]: action.value,
         },
       }
 

@@ -39,8 +39,19 @@ export function useMeshData() {
         state.modBlend,
         state.diagonalMod,
         state.cardinalMod,
+        state.meshResolution.rings,
+        state.meshResolution.slices,
       ),
-    [hData, vData, state.shapeBlend, state.modBlend, state.diagonalMod, state.cardinalMod],
+    [
+      hData,
+      vData,
+      state.shapeBlend,
+      state.modBlend,
+      state.diagonalMod,
+      state.cardinalMod,
+      state.meshResolution.rings,
+      state.meshResolution.slices,
+    ],
   )
 
   // Compute metrics for display

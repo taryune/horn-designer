@@ -11,6 +11,7 @@ import { DiagonalModSection } from '../controls/DiagonalModSection'
 import { ExportButtons } from '../controls/ExportButtons'
 import { HorizontalGuideSection } from '../controls/HorizontalGuideSection'
 import { InfoBadges } from '../controls/InfoBadges'
+import { MeshResolutionSection } from '../controls/MeshResolutionSection'
 import { ModulationBlendSection } from '../controls/ModulationBlendSection'
 import { ProfileShapeSection } from '../controls/ProfileShapeSection'
 import { ShapeBlendSection } from '../controls/ShapeBlendSection'
@@ -49,6 +50,8 @@ export function ControlPanel() {
       <ModulationBlendSection />
       <DiagonalModSection />
       <CardinalModSection />
+
+      <MeshResolutionSection />
 
       <ExportButtons />
 
