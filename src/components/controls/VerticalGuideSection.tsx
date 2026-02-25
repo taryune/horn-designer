@@ -1,4 +1,5 @@
 import { useWaveguide } from '../../context/WaveguideContext'
+import { VERTICAL_GUIDE_PARAMS } from '../../lib/config/parameterConfig'
 import { ParameterSection } from './ParameterSection'
 import { ParameterSlider } from './ParameterSlider'
 
@@ -11,23 +12,15 @@ export function VerticalGuideSection() {
       <ParameterSlider
         label="R_v radius"
         value={v.R}
-        min={30}
-        max={300}
-        step={5}
+        {...VERTICAL_GUIDE_PARAMS.R}
         onChange={(value) => dispatch({ type: 'UPDATE_V_PARAM', param: 'R', value })}
-        unit="mm"
-        decimals={0}
         color="v-guide"
       />
       <ParameterSlider
         label="α_v half-angle"
         value={v.a_deg}
-        min={10}
-        max={55}
-        step={1}
+        {...VERTICAL_GUIDE_PARAMS.a_deg}
         onChange={(value) => dispatch({ type: 'UPDATE_V_PARAM', param: 'a_deg', value })}
-        unit="°"
-        decimals={0}
         color="v-guide"
       />
     </ParameterSection>

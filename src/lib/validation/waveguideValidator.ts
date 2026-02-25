@@ -5,6 +5,8 @@
  * to ensure type safety and parameter bounds.
  */
 
+import { PARAM_RANGES } from '../config/parameterConfig'
+
 // Validation uses structural typing, no direct WaveguideState import needed
 
 export interface ValidationError {
@@ -18,47 +20,6 @@ export interface ValidationResult {
   valid: boolean
   errors: ValidationError[]
   warnings: string[]
-}
-
-/**
- * Parameter range definitions for validation.
- */
-const PARAM_RANGES = {
-  rosse: {
-    R: { min: 40, max: 350 },
-    r0: { min: 6, max: 36 },
-    a0_deg: { min: 0, max: 20 },
-    a_deg: { min: 10, max: 60 },
-    k: { min: 0.3, max: 5 },
-    rho: { min: 0.05, max: 0.9 },
-    b: { min: 0, max: 0.8 },
-    m: { min: 0.5, max: 1.0 },
-    q: { min: 1, max: 10 },
-  },
-  shapeBlend: {
-    nMouth: { min: 2, max: 10 },
-    shapeStart: { min: 0, max: 0.6 },
-    shapeEnd: { min: 0.2, max: 1.0 },
-    shapePow: { min: 0.3, max: 4 },
-  },
-  modBlend: {
-    modStart: { min: 0, max: 0.6 },
-    modEnd: { min: 0.2, max: 1.0 },
-    modPow: { min: 0.5, max: 5 },
-  },
-  modulation: {
-    base: { min: 0.05, max: 1.0 },
-    amp: { min: 0, max: 1.5 },
-    freq: { min: 0.5, max: 6.0 },
-    exp: { min: 1, max: 12 },
-  },
-  meshResolution: {
-    rings: { min: 20, max: 200 },
-    slices: { min: 36, max: 256 },
-  },
-  shellParams: {
-    thickness: { min: 0.5, max: 20 },
-  },
 }
 
 /**

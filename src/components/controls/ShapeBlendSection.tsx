@@ -1,4 +1,5 @@
 import { useWaveguide } from '../../context/WaveguideContext'
+import { SHAPE_BLEND_PARAMS } from '../../lib/config/parameterConfig'
 import { ParameterSection } from './ParameterSection'
 import { ParameterSlider } from './ParameterSlider'
 
@@ -11,9 +12,7 @@ export function ShapeBlendSection() {
       <ParameterSlider
         label="n rectangularity"
         value={s.nMouth}
-        min={2}
-        max={10}
-        step={0.1}
+        {...SHAPE_BLEND_PARAMS.nMouth}
         onChange={(value) => dispatch({ type: 'UPDATE_SHAPE_BLEND', param: 'nMouth', value })}
         color="super-ellipse"
       />
@@ -23,9 +22,7 @@ export function ShapeBlendSection() {
           <ParameterSlider
             label=""
             value={s.shapeStart}
-            min={0}
-            max={0.6}
-            step={0.01}
+            {...SHAPE_BLEND_PARAMS.shapeStart}
             onChange={(value) =>
               dispatch({ type: 'UPDATE_SHAPE_BLEND', param: 'shapeStart', value })
             }
@@ -36,9 +33,7 @@ export function ShapeBlendSection() {
           <ParameterSlider
             label=""
             value={s.shapeEnd}
-            min={0.2}
-            max={1.0}
-            step={0.01}
+            {...SHAPE_BLEND_PARAMS.shapeEnd}
             onChange={(value) => dispatch({ type: 'UPDATE_SHAPE_BLEND', param: 'shapeEnd', value })}
             color="super-ellipse"
             compact
@@ -48,9 +43,7 @@ export function ShapeBlendSection() {
       <ParameterSlider
         label="shape power"
         value={s.shapePow}
-        min={0.3}
-        max={4}
-        step={0.1}
+        {...SHAPE_BLEND_PARAMS.shapePow}
         onChange={(value) => dispatch({ type: 'UPDATE_SHAPE_BLEND', param: 'shapePow', value })}
         color="super-ellipse"
       />

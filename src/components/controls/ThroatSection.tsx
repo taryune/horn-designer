@@ -6,6 +6,7 @@
  */
 
 import { useWaveguide } from '../../context/WaveguideContext'
+import { ROSSE_PARAMS } from '../../lib/config/parameterConfig'
 import { ParameterSection } from './ParameterSection'
 import { ParameterSlider } from './ParameterSlider'
 
@@ -17,40 +18,29 @@ export function ThroatSection() {
       <ParameterSlider
         label="r₀ radius"
         value={state.horizontal.r0}
-        min={6}
-        max={36}
-        step={0.5}
+        {...ROSSE_PARAMS.r0}
         onChange={(value) => {
           dispatch({ type: 'UPDATE_H_PARAM', param: 'r0', value })
           dispatch({ type: 'UPDATE_V_PARAM', param: 'r0', value })
         }}
-        unit="mm"
-        decimals={1}
       />
       <ParameterSlider
         label="α₀ angle"
         value={state.horizontal.a0_deg}
-        min={0}
-        max={20}
-        step={0.5}
+        {...ROSSE_PARAMS.a0_deg}
         onChange={(value) => {
           dispatch({ type: 'UPDATE_H_PARAM', param: 'a0_deg', value })
           dispatch({ type: 'UPDATE_V_PARAM', param: 'a0_deg', value })
         }}
-        unit="°"
-        decimals={1}
       />
       <ParameterSlider
         label="k expansion"
         value={state.horizontal.k}
-        min={0.3}
-        max={5}
-        step={0.1}
+        {...ROSSE_PARAMS.k}
         onChange={(value) => {
           dispatch({ type: 'UPDATE_H_PARAM', param: 'k', value })
           dispatch({ type: 'UPDATE_V_PARAM', param: 'k', value })
         }}
-        decimals={1}
       />
     </ParameterSection>
   )

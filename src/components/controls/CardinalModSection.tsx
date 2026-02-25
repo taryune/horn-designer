@@ -1,4 +1,5 @@
 import { useWaveguide } from '../../context/WaveguideContext'
+import { MODULATION_PARAMS } from '../../lib/config/parameterConfig'
 import { colors } from '../../lib/design-tokens'
 import { ParameterSlider } from './ParameterSlider'
 
@@ -46,39 +47,29 @@ export function CardinalModSection() {
           <ParameterSlider
             label="base"
             value={c.base}
-            min={0.05}
-            max={1}
-            step={0.05}
+            {...MODULATION_PARAMS.base}
             onChange={(value) => dispatch({ type: 'UPDATE_CARDMOD_NUMBER', param: 'base', value })}
             color="cardinal-mod"
           />
           <ParameterSlider
             label="amplitude"
             value={c.amp}
-            min={0}
-            max={1.5}
-            step={0.05}
+            {...MODULATION_PARAMS.amp}
             onChange={(value) => dispatch({ type: 'UPDATE_CARDMOD_NUMBER', param: 'amp', value })}
             color="cardinal-mod"
           />
           <ParameterSlider
             label="frequency"
             value={c.freq}
-            min={0.5}
-            max={6}
-            step={0.1}
+            {...MODULATION_PARAMS.freq}
             onChange={(value) => dispatch({ type: 'UPDATE_CARDMOD_NUMBER', param: 'freq', value })}
-            decimals={1}
             color="cardinal-mod"
           />
           <ParameterSlider
             label="exponent"
             value={c.exp}
-            min={1}
-            max={12}
-            step={0.5}
+            {...MODULATION_PARAMS.exp}
             onChange={(value) => dispatch({ type: 'UPDATE_CARDMOD_NUMBER', param: 'exp', value })}
-            decimals={1}
             color="cardinal-mod"
           />
         </>

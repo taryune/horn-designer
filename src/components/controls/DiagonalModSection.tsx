@@ -1,4 +1,5 @@
 import { useWaveguide } from '../../context/WaveguideContext'
+import { MODULATION_PARAMS } from '../../lib/config/parameterConfig'
 import { colors } from '../../lib/design-tokens'
 import { ParameterSlider } from './ParameterSlider'
 
@@ -46,39 +47,29 @@ export function DiagonalModSection() {
           <ParameterSlider
             label="base"
             value={d.base}
-            min={0.05}
-            max={1}
-            step={0.05}
+            {...MODULATION_PARAMS.base}
             onChange={(value) => dispatch({ type: 'UPDATE_DIAGONAL_NUMBER', param: 'base', value })}
             color="diagonal-mod"
           />
           <ParameterSlider
             label="amplitude"
             value={d.amp}
-            min={0}
-            max={1.5}
-            step={0.05}
+            {...MODULATION_PARAMS.amp}
             onChange={(value) => dispatch({ type: 'UPDATE_DIAGONAL_NUMBER', param: 'amp', value })}
             color="diagonal-mod"
           />
           <ParameterSlider
             label="frequency"
             value={d.freq}
-            min={0.5}
-            max={6}
-            step={0.1}
+            {...MODULATION_PARAMS.freq}
             onChange={(value) => dispatch({ type: 'UPDATE_DIAGONAL_NUMBER', param: 'freq', value })}
-            decimals={1}
             color="diagonal-mod"
           />
           <ParameterSlider
             label="exponent"
             value={d.exp}
-            min={1}
-            max={12}
-            step={0.5}
+            {...MODULATION_PARAMS.exp}
             onChange={(value) => dispatch({ type: 'UPDATE_DIAGONAL_NUMBER', param: 'exp', value })}
-            decimals={1}
             color="diagonal-mod"
           />
         </>

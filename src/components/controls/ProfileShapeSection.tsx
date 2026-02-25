@@ -1,4 +1,5 @@
 import { useWaveguide } from '../../context/WaveguideContext'
+import { ROSSE_PARAMS } from '../../lib/config/parameterConfig'
 import { ParameterSection } from './ParameterSection'
 import { ParameterSlider } from './ParameterSlider'
 
@@ -11,9 +12,7 @@ export function ProfileShapeSection() {
       <ParameterSlider
         label="ρ apex"
         value={h.rho}
-        min={0.05}
-        max={0.9}
-        step={0.05}
+        {...ROSSE_PARAMS.rho}
         onChange={(value) => {
           dispatch({ type: 'UPDATE_H_PARAM', param: 'rho', value })
           dispatch({ type: 'UPDATE_V_PARAM', param: 'rho', value })
@@ -22,9 +21,7 @@ export function ProfileShapeSection() {
       <ParameterSlider
         label="m shift"
         value={h.m}
-        min={0.5}
-        max={1.0}
-        step={0.05}
+        {...ROSSE_PARAMS.m}
         onChange={(value) => {
           dispatch({ type: 'UPDATE_H_PARAM', param: 'm', value })
           dispatch({ type: 'UPDATE_V_PARAM', param: 'm', value })
@@ -33,9 +30,7 @@ export function ProfileShapeSection() {
       <ParameterSlider
         label="b bending"
         value={h.b}
-        min={0}
-        max={0.8}
-        step={0.05}
+        {...ROSSE_PARAMS.b}
         onChange={(value) => {
           dispatch({ type: 'UPDATE_H_PARAM', param: 'b', value })
           dispatch({ type: 'UPDATE_V_PARAM', param: 'b', value })
@@ -44,9 +39,7 @@ export function ProfileShapeSection() {
       <ParameterSlider
         label="q shape"
         value={h.q}
-        min={1}
-        max={10}
-        step={0.1}
+        {...ROSSE_PARAMS.q}
         onChange={(value) => {
           dispatch({ type: 'UPDATE_H_PARAM', param: 'q', value })
           dispatch({ type: 'UPDATE_V_PARAM', param: 'q', value })

@@ -1,4 +1,5 @@
 import { useWaveguide } from '../../context/WaveguideContext'
+import { MODULATION_BLEND_PARAMS } from '../../lib/config/parameterConfig'
 import { ParameterSection } from './ParameterSection'
 import { ParameterSlider } from './ParameterSlider'
 
@@ -14,9 +15,7 @@ export function ModulationBlendSection() {
           <ParameterSlider
             label=""
             value={m.modStart}
-            min={0}
-            max={0.6}
-            step={0.01}
+            {...MODULATION_BLEND_PARAMS.modStart}
             onChange={(value) => dispatch({ type: 'UPDATE_MOD_BLEND', param: 'modStart', value })}
             color="diagonal-mod"
             compact
@@ -25,9 +24,7 @@ export function ModulationBlendSection() {
           <ParameterSlider
             label=""
             value={m.modEnd}
-            min={0.3}
-            max={1.0}
-            step={0.01}
+            {...MODULATION_BLEND_PARAMS.modEnd}
             onChange={(value) => dispatch({ type: 'UPDATE_MOD_BLEND', param: 'modEnd', value })}
             color="diagonal-mod"
             compact
@@ -37,9 +34,7 @@ export function ModulationBlendSection() {
       <ParameterSlider
         label="mod power"
         value={m.modPow}
-        min={0.3}
-        max={4}
-        step={0.1}
+        {...MODULATION_BLEND_PARAMS.modPow}
         onChange={(value) => dispatch({ type: 'UPDATE_MOD_BLEND', param: 'modPow', value })}
         color="diagonal-mod"
       />

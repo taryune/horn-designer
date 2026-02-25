@@ -6,6 +6,7 @@
  */
 
 import { useWaveguide } from '../../context/WaveguideContext'
+import { MESH_RESOLUTION_PARAMS } from '../../lib/config/parameterConfig'
 import { ParameterSection } from './ParameterSection'
 import { ParameterSlider } from './ParameterSlider'
 
@@ -22,20 +23,14 @@ export function MeshResolutionSection() {
       <ParameterSlider
         label="rings (axial)"
         value={rings}
-        min={20}
-        max={200}
-        step={5}
+        {...MESH_RESOLUTION_PARAMS.rings}
         onChange={(value) => dispatch({ type: 'UPDATE_MESH_RESOLUTION', param: 'rings', value })}
-        decimals={0}
       />
       <ParameterSlider
         label="slices (angular)"
         value={slices}
-        min={36}
-        max={256}
-        step={4}
+        {...MESH_RESOLUTION_PARAMS.slices}
         onChange={(value) => dispatch({ type: 'UPDATE_MESH_RESOLUTION', param: 'slices', value })}
-        decimals={0}
       />
       <div className="text-[0.625rem] text-text-subtle-dark mt-1">
         {totalVertices.toLocaleString()} vertices · {totalFaces.toLocaleString()} faces

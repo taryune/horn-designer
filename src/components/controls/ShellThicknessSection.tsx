@@ -10,6 +10,7 @@
  */
 
 import { useWaveguide } from '../../context/WaveguideContext'
+import { SHELL_PARAMS } from '../../lib/config/parameterConfig'
 import { colors } from '../../lib/design-tokens'
 import { ParameterSection } from './ParameterSection'
 import { ParameterSlider } from './ParameterSlider'
@@ -45,14 +46,10 @@ export function ShellThicknessSection() {
           <ParameterSlider
             label="wall thickness"
             value={thickness}
-            min={0.5}
-            max={20}
-            step={0.5}
+            {...SHELL_PARAMS.thickness}
             onChange={(value) =>
               dispatch({ type: 'UPDATE_SHELL_NUMBER', param: 'thickness', value })
             }
-            unit="mm"
-            decimals={1}
           />
 
           <div className="text-[0.625rem] text-text-subtle-dark mt-2">
